@@ -9,7 +9,7 @@ interface HeadingProps {
   info: boolean;
 }
 
-export const Heading: React.FC<HeadingProps> = ({
+const Heading: React.FC<HeadingProps> = ({
   title,
   top,
   bottom,
@@ -29,3 +29,4 @@ export const Heading: React.FC<HeadingProps> = ({
     </h2>
   );
 };
+export default Heading;

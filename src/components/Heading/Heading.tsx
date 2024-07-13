@@ -2,11 +2,11 @@ import css from './Heading.module.css';
 import clsx from 'clsx';
 
 interface HeadingProps {
-  title: string;
-  top: boolean;
-  bottom: boolean;
-  error: boolean;
-  info: boolean;
+  title?: string;
+  top?: boolean;
+  bottom?: boolean;
+  error?: boolean;
+  info?: boolean;
 }
 
 const Heading: React.FC<HeadingProps> = ({

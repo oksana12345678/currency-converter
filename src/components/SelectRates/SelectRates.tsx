@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import css from './SelectRates.module.css';
 import Select, { SingleValue } from 'react-select';
 import symbols from './symbols.json';
-import { setBaseCurrency } from 'reduxState/currencySlice';
+import { setBaseCurrency } from '../../reduxState/currencySlice';
 import './ReactSelect.css';
 
 interface SelectRatesProps {

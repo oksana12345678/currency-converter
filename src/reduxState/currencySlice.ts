@@ -1,52 +1,60 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   fetchBaseCurrency,
   fetchExchangeCurrency,
   fetchRates,
 } from './operations';
+import { CurrencyState } from '../helpers/types';
+
+const initialState: CurrencyState = {
+  baseCurrency: '',
+  exchangeInfo: null,
+  isLoading: false,
+  isError: false,
+  rates: [],
+};
 
 const slice = createSlice({
   name: 'currency',
-  initialState: {
-    baseCurrency: '',
-    exchangeInfo: null,
-    isLoading: false,
-    isError: null,
-    rates: [],
-  },
-
+  initialState,
   reducers: {
-    setBaseCurrency: (state, action) => {
+    setBaseCurrency: (state, action: PayloadAction<string>) => {
       state.baseCurrency = action.payload;
     },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchBaseCurrency.fulfilled, (state, action) => {
-        state.baseCurrency = action.payload;
-      })
+      .addCase(
+        fetchBaseCurrency.fulfilled,
+        (state, action: PayloadAction<string>) => {
+          state.baseCurrency = action.payload;
+        },
+      )
       .addCase(fetchExchangeCurrency.pending, state => {
         state.isLoading = true;
-        state.isError = null;
+        state.isError = false;
       })
-      .addCase(fetchExchangeCurrency.fulfilled, (state, action) => {
-        state.exchangeInfo = action.payload;
+      .addCase(
+        fetchExchangeCurrency.fulfilled,
+        (state, action: PayloadAction<unknown>) => {
+          state.exchangeInfo = action.payload;
+          state.isLoading = false;
+        },
+      )
+      .addCase(fetchExchangeCurrency.rejected, state => {
         state.isLoading = false;
-      })
-      .addCase(fetchExchangeCurrency.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = action.payload;
+        state.isError = true;
       })
       .addCase(fetchRates.pending, state => {
         state.isLoading = true;
-        state.isError = null;
+        state.isError = false;
       })
-      .addCase(fetchRates.fulfilled, (state, action) => {
+      .addCase(fetchRates.fulfilled, (state, action: PayloadAction<string>) => {
         state.rates = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchRates.rejected, (state, action) => {
-        state.isError = action.payload;
+      .addCase(fetchRates.rejected, state => {
+        state.isError = true;
         state.isLoading = false;
       });
   },

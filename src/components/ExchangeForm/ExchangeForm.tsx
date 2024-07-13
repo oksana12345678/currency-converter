@@ -4,6 +4,7 @@ import { useId } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './ExchangeForm.module.css';
 import { MdCurrencyExchange } from 'react-icons/md';
+import { fetchExchangeCurrency } from '../../reduxState/operations';
 interface FormValues {
   currency: string;
 }

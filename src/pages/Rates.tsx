@@ -15,9 +15,9 @@ import {
   selectIsError,
   selectIsLoading,
   selectRates,
-} from 'reduxState/selertors';
+} from '../reduxState/selectors';
 import { useEffect } from 'react';
-import { fetchRates } from 'reduxState/operations';
+import { fetchRates } from '../reduxState/operations';
 
 const Rates = () => {
   const dispatch = useDispatch();

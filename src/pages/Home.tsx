@@ -3,7 +3,7 @@ import {
   selectExchangeInfo,
   selectIsError,
   selectIsLoading,
-} from 'reduxState/selertors';
+} from '../reduxState/selectors';
 import Section from '../components/Section/Section';
 import Container from '../components/Container/Container';
 import ExchangeForm from '../components/ExchangeForm/ExchangeForm';
